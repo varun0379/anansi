@@ -12,41 +12,29 @@ function CreateStory() {
         });
     };
     const handleSubmit = () => {
-        // fetch('/api/stories', {
-        //     method: 'POST',
-        //     body: JSON.stringify(formValues),
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        // })
-        const apiUrl = "http://127.0.0.1:8000/api/stories"
-        const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formValues),
-        };
-        fetch(apiUrl, requestOptions).then(response => {
-            if (!response.ok){
-                throw new Error('nework response not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(JSON.stringify(data, null, 2))
-        })
-        .catch(error => {
-            console.error
-
-        ('Error:', error);
-        });
-
-        // fetch('/time').then(res => res.json()).then(data => {
-        //     console.log(data.time)
-        // });
-        console.log(formValues);
-    }
+      const xhr = new XMLHttpRequest();
+      const apiUrl = "http://127.0.0.1:8001/api/stories";
+      xhr.open("POST", apiUrl, true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+  
+      xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                  console.log(JSON.parse(xhr.responseText));
+              } else {
+                  console.error('Error:', xhr.statusText);
+              }
+          }
+      };
+  
+      xhr.onerror = function () {
+          console.error('Request failed');
+      };
+  
+      xhr.send(JSON.stringify(formValues));
+      console.log(formValues);
+  };
+  
     return (
         // <div>
         //     <h1>This is the Create Story page</h1>
