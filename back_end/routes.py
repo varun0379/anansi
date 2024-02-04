@@ -1,54 +1,54 @@
-import time
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
-from config import Config
-from flask_migrate import Migrate
-from app import app
-from "/Users/varuniyer/Coding/anansi/back_end/app/db1.py" import insert_story  # Adjust the import path as necessary
-import speech_recog
+# import time
+# from flask import Flask
+# from flask_sqlalchemy import SQLAlchemy
+# from flask_cors import CORS
+# from config import Config
+# from flask_migrate import Migrate
+# from app import app
+# from "/Users/varuniyer/Coding/anansi/back_end/app/db1.py" import insert_story  # Adjust the import path as necessary
+# import speech_recog
 
 
-# Initialize the Flask application
-app = Flask(__name__)
-# Load the configuration from `config.py`
-app.config.from_object(Config)
+# # Initialize the Flask application
+# app = Flask(__name__)
+# # Load the configuration from `config.py`
+# app.config.from_object(Config)
 
-# Initialize SQLAlchemy with the Flask app for ORM functionality
-database1 = SQLAlchemy(app)
-# Initialize CORS to allow cross-origin requests
-CORS(app)
-# Initialize Flask-Migrate for database migrations
-migrate = Migrate(app, database1)
-
-
-# input_lang = ""
-
-# Define a route to get the current server time
-@app.route('/time/') 
-def get_current_time():
-    return "hello world"
-
-# story_body_gpt = speech_recog.rec_story(input_lang)
+# # Initialize SQLAlchemy with the Flask app for ORM functionality
+# database1 = SQLAlchemy(app)
+# # Initialize CORS to allow cross-origin requests
+# CORS(app)
+# # Initialize Flask-Migrate for database migrations
+# migrate = Migrate(app, database1)
 
 
-# # Define a route to add a new story
-# @app.route('/api/stories', methods=['POST'])
-# def add_story():
-#     # Get JSON data from the request
-#     data = request.json
-#     try: 
-#         # Create a new Story instance with data from the request
-#         new_story = Story(title=data['title'], author=data['author'], story_body=story_body_gpt, tags=data['tags'])
-#         # Add the new story to the database session
-#         db.session.add(new_story)
-#         # Commit the session to save the story to the database
-#         db.session.commit()
-#         return jsonify({'message': 'Story added successfully'}), 201
-#     except SQLAlchemyError as e:
-#             # Rollback the session in case of error
-#             db.session.rollback()
-#             return jsonify({'error': str(e)}), 500
+# # input_lang = ""
+
+# # Define a route to get the current server time
+# @app.route('/time/') 
+# def get_current_time():
+#     return "hello world"
+
+# # story_body_gpt = speech_recog.rec_story(input_lang)
+
+
+# # # Define a route to add a new story
+# # @app.route('/api/stories', methods=['POST'])
+# # def add_story():
+# #     # Get JSON data from the request
+# #     data = request.json
+# #     try: 
+# #         # Create a new Story instance with data from the request
+# #         new_story = Story(title=data['title'], author=data['author'], story_body=story_body_gpt, tags=data['tags'])
+# #         # Add the new story to the database session
+# #         db.session.add(new_story)
+# #         # Commit the session to save the story to the database
+# #         db.session.commit()
+# #         return jsonify({'message': 'Story added successfully'}), 201
+# #     except SQLAlchemyError as e:
+# #             # Rollback the session in case of error
+# #             db.session.rollback()
+# #             return jsonify({'error': str(e)}), 500
 
 # # Define a route to get all stories
 # @app.route('/api/stories', methods=['GET'])
@@ -66,20 +66,20 @@ def get_current_time():
 
 
 
-input_lang = ""
+# input_lang = ""
 
-story_body_gpt = speech_recog.rec_story(input_lang)
+# story_body_gpt = speech_recog.rec_story(input_lang)
 
 
 
-@app.route('/api/stories', methods=['POST'])
-def add_story():
-    data = request.json
-    insert_story(data['title'], data['author'], story_body_gpt, data['tags'])
-    return jsonify({'message': 'Story added successfully'})
+# @app.route('/api/stories', methods=['POST'])
+# def add_story():
+#     data = request.json
+#     insert_story(data['title'], data['author'], story_body_gpt, data['tags'])
+#     return jsonify({'message': 'Story added successfully'})
 
-from app import app
+# from app import app
 
-if __name__ == '__main__':
-    # Run the Flask application with debug mode enabled
-    app.run(port=5500, debug=True)
+# if __name__ == '__main__':
+#     # Run the Flask application with debug mode enabled
+#     app.run(port=5500, debug=True)

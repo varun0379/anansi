@@ -1,6 +1,6 @@
 import pymysql
 
-def insert_story(title, author, story_body, tags):
+def insert_story(data, story_body):
     hostname = 'localhost'
     user = 'root'
     password = 'varun0379'
@@ -15,7 +15,7 @@ def insert_story(title, author, story_body, tags):
     """
     
     try:
-        cursor.execute(query, (title, author, story_body, tags))
+        cursor.execute(query, (data["title"], data["author"], story_body, data["tags"]))
         db.commit()
         print(f"{cursor.rowcount} details inserted")
     except pymysql.MySQLError as e:

@@ -1,4 +1,4 @@
-from . import db
+import pymysql
 
 # Define the Story model mapping to the 'story' table
 class Story(db.Model):

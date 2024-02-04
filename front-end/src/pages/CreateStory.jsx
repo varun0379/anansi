@@ -11,6 +11,7 @@ function CreateStory() {
             [name]: value,
         });
     };
+<<<<<<< Updated upstream
     const handleSubmit = () => {
       const xhr = new XMLHttpRequest();
       const apiUrl = "http://127.0.0.1:8001/api/stories";
@@ -35,6 +36,48 @@ function CreateStory() {
       console.log(formValues);
   };
   
+=======
+    const handleSubmit = async (e) => {
+        // fetch('/api/stories', {
+        //     method: 'POST',
+        //     body: JSON.stringify(formValues),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        // })
+        e.preventDefault();
+        const apiUrl = "http://127.0.0.1:8000/api/stories"
+        const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formValues),
+        };
+        // fetch(apiUrl, requestOptions).then(response => {
+        //     if (!response.ok){
+        //         throw new Error('nework response not ok');
+        //     }
+        //     return response.json();
+        // })
+        // .then(data => {
+        //     console.log(JSON.stringify(data, null, 2))
+        // })
+        // .catch(error => {
+        //     console.error
+
+        // ('Error:', error);
+        // });
+        const response = await fetch(apiUrl, requestOptions);
+        const myJson = await response.json;
+        console.log(myJson)
+
+        // fetch('/time').then(res => res.json()).then(data => {
+        //     console.log(data.time)
+        // });
+        console.log(formValues);
+    }
+>>>>>>> Stashed changes
     return (
         // <div>
         //     <h1>This is the Create Story page</h1>

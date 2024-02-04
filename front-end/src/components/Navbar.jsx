@@ -28,12 +28,9 @@ function Navbar(props) {
           </Grid>
           <Grid item xs={12} md={4}>
             <Button color="primary" size="large" variant="contained">
-              {/* <Link to="/create" style={{textDecoration: "none", color: "#FFF"}}> */}
-              <Button>
-                tell a tale
-              </Button>
-                
-              {/* </Link> */}
+              <Link to="/create" style={{textDecoration: "none", color: "#FFF"}}>
+                tell a tale                
+              </Link>
             </Button>
           </Grid>
         </Grid>
