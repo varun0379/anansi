@@ -19,9 +19,32 @@ function CreateStory() {
         //         'Content-Type': 'application/json'
         //     },
         // })
-        fetch('/time').then(res => res.json()).then(data => {
-            console.log(data.time)
+        const apiUrl = "http://127.0.0.1:8000/api/stories"
+        const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formValues),
+        };
+        fetch(apiUrl, requestOptions).then(response => {
+            if (!response.ok){
+                throw new Error('nework response not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(JSON.stringify(data, null, 2))
+        })
+        .catch(error => {
+            console.error
+
+        ('Error:', error);
         });
+
+        // fetch('/time').then(res => res.json()).then(data => {
+        //     console.log(data.time)
+        // });
         console.log(formValues);
     }
     return (
@@ -53,7 +76,7 @@ function CreateStory() {
         //     </Box>
             
         // </div>
-        <form action='/api/stories'>
+        <form>
             <FormGroup sx={{padding: 2, borderRadius: 2, border: '1px solid'}}>
                 <TextField name="title" sx={{paddingBottom: 2}}  variant="outlined" placeholder='Story title' onChange={handleTextFieldChange} />
                 <TextField name="author" variant="outlined" placeholder='Author' onChange={handleTextFieldChange} />
